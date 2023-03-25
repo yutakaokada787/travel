@@ -1,0 +1,11 @@
+<h1>ここがあなたの旅のスタート♪</h1>
+<p>メールアドレス : <%= @user.email %></p>
+<% if current_user.id == @user.id %>
+  <%= link_to "編集する", edit_user_registration_path %>
+  
+<% end %>
+<%= link_to "Tweet一覧に戻る", tweets_path %>
+<h2>マイプラン一覧</h2>
+<% @preparations.each do |t| %>
+  <%= t.body %>
+<% end %>

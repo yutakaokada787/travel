@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Okayu</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <body>
+    <header>
+  <% unless user_signed_in? %>
+  <%= link_to "ログイン", new_user_session_path %>
+  <%= link_to "新規登録", new_user_registration_path %>
+  <% end %>
+  <% if user_signed_in? %>
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+  <% end %>
+  <%= link_to "マップ", map_tweets_path %>
+</header>
+<div class="image-man">  
+
+<%= image_tag 'sea.png', class:'sea' %>
+<%= image_tag 'sun.png', class:'sun' %>
+<h2>さぁ旅に出よう</h2>
+</div>
+
+<h2>このサイトで出来ること</h2>
+<h2>思い出をシェアしよう</h2>
+<h2>また旅に出よう</h2>
+<div class="tweets-container">
+    <% @rank_tweets.each do |t| %>
+     <div class="tweet">
+      <%= image_tag t.image_url, size: "250x200" if t.image? %>
+      <%= t.body %>
+      <% if user_signed_in? %>
+      <% if current_user.already_liked?(t) %>
+          <%= button_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
+            <i class="fas fa-heart"></i><%= t.likes.count %>
+          <% end %>
+      <% else %>
+          <%= button_to tweet_likes_path(id: t.id, tweet_id: t.id), method: :post do %>
+            <i class="far fa-heart"></i><%= t.likes.count %>
+          <% end %>
+      <% end %>
+  <% else %>
+    <i class="far fa-heart"></i><%= t.likes.count %>
+  <% end %>
+      <%= t.created_at %>
+      <%= link_to "詳細へ", tweet_path(t.id) %>
+    </div>
+  <% end %>
+</div>
+</body>
+<script>
+window.onscroll = function(){  
+var scrollTop = window.pageYOffset ;  //スクロール量を代入する
+
+if (scrollTop == 0 ) {   //最上部に戻ってきた時
+$(".sea").css('opacity', '1')
+  $('.sea').css('transition', '1s')
+
+  $(".sun").css('opacity', '0')
+  $('.sun').css('transition', '1s')
+}
+if (scrollTop > 5 ) {   //１０pxスクロールした時
+  $(".sea").css('opacity', '0')
+  $('.sea').css('transition', '1s')
+
+  $(".sun").css('opacity', '1')
+  $('.sun').css('transition', '1s')
+}
+}
+</script>

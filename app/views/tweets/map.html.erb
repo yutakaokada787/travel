@@ -1,0 +1,112 @@
+<div class="flower">
+<div class="japan_map">
+<%= image_tag 'map2.png',class:'map'%>
+
+    <span class="area_btn area1" data-area="1">北海道・東北</span>
+    <span class="area_btn area2" data-area="2">関東</span>
+    <span class="area_btn area3" data-area="3">中部</span>
+    <span class="area_btn area4" data-area="4">近畿</span>
+    <span class="area_btn area5" data-area="5">中国・四国</span>
+    <span class="area_btn area6" data-area="6">九州・沖縄</span>
+    <div class="area_overlay">
+        <div class="pref_area">
+            <div class="pref_list" data-list="1">
+                <div data-id="hokkaido">北海道</div>
+                <div data-id="aomori">青森県</div>
+                <div data-id="iwate">岩手県</div>
+                <div data-id="miyagi">宮城県</div>
+                <div data-id="akita">秋田県</div>
+                <div data-id="yamagata">山形県</div>
+                <div data-id="fukushima">福島県</div>
+                <div></div>
+            </div>
+            <div class="pref_list" data-list="2">
+                <div data-id="ibaragi">茨城県</div>
+                <div data-id="tochigi">栃木県</div>
+                <div data-id="gunma">群馬県</div>
+                <div data-id="saitama">埼玉県</div>
+                <div data-id="chiba">千葉県</div>
+                <div data-id="tokyo">東京都</div>
+                <div data-id="kanagawa">神奈川県</div>
+                <div></div>
+            </div>
+            <div class="pref_list" data-list="3">
+                <div data-id="niigata">新潟県</div>
+                <div data-id="toyama">富山県</div>
+                <div data-id="ishikawa">石川県</div>
+                <div data-id="fukui">福井県</div>
+                <div data-id="yamanashi">山梨県</div>
+                <div data-id="nagano">長野県</div>
+                <div data-id="gihu">岐阜県</div>
+                <div data-id="shizuoka">静岡県</div>
+                <div data-id="aichi">愛知県</div>
+                <div></div>
+            </div>
+            <div class="pref_list" data-list="4">
+                <div data-id="mie">三重県</div>
+                <div data-id="shiga">滋賀県</div>
+                <div data-id="kyoto">京都府</div>
+                <div data-id="osaka">大阪府</div>
+                <div data-id="hyogo">兵庫県</div>
+                <div data-id="nara">奈良県</div>
+                <div data-id="wakayama">和歌山県</div>
+                <div></div>
+            </div>
+            <div class="pref_list" data-list="5">
+                <div data-id="tottori">鳥取県</div>
+                <div data-id="shimane">島根県</div>
+                <div data-id="okayama">岡山県</div>
+                <div data-id="hiroshima">広島県</div>
+                <div data-id="yamaguchi">山口県</div>
+                <div data-id="tokushima">徳島県</div>
+                <div data-id="kagawa">香川県</div>
+                <div data-id="ehime">愛媛県</div>
+                <div data-id="kouchi">高知県</div>
+                <div></div>
+            </div>
+            <div class="pref_list" data-list="6">
+                <div data-id="fukuoka">福岡県</div>
+                <div data-id="saga">佐賀県</div>
+                <div data-id="nagasaki">長崎県</div>
+                <div data-id="kumamoto">熊本県</div>
+                <div data-id="oita">大分県</div>
+                <div data-id="miyazaki">宮崎県</div>
+                <div data-id="kagoshima">鹿児島県</div>
+                <div data-id="okinawa">沖縄県</div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+$(function(){
+    //地域を選択
+    $('.area_btn').click(function(){
+        $('.area_overlay').show();
+        $('.pref_area').show();
+        var area = $(this).data('area');
+        $('[data-list]').hide();
+        $('[data-list="' + area + '"]').show();
+    });
+    //レイヤーをタップ
+    $('.area_overlay').click(function(){
+        prefReset();
+    });
+    //都道府県をクリック
+    $('.pref_list [data-id]').click(function(){
+        if($(this).data('id')){
+            var id = $(this).data('id');
+            //このidを使用して行いたい操作をしてください
+            //都道府県IDに応じて別ページに飛ばしたい場合はこんな風に書く↓
+            window.location.href = 'https://travel.rakuten.co.jp/mytrip/ranking/spot-' + id;
+            prefReset();
+        }
+    });
+    //表示リセット
+    function prefReset(){
+        $('[data-list]').hide();
+        $('.pref_area').hide();
+        $('.area_overlay').hide();
+    }
+});
+</script>

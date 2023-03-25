@@ -1,0 +1,168 @@
+// Place all the styles related to the tweets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.japan_map{
+    position: relative;
+    bottom: 50vh;
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: table;
+    background-color: #adf6ff;
+}
+// .japan_map > img{
+//     width: 45vw;
+//     height: 45vh;
+// }
+/* 日本地図ボタン */
+.japan_map .area_btn{
+    position: absolute;
+    z-index: 1;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 3px solid #333333;
+    border-radius: 5px;
+    background-color: #FFF;
+    padding: 0.2em auto;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* ボタン配置（使用する日本地図画像により微調整） */
+.japan_map .area_btn.area1{
+    top: 30%;
+    right: 0;
+    width: 30%;
+}
+.japan_map .area_btn.area2{
+    top: 58%;
+    right: 11%;
+    width: 13%;
+}
+.japan_map .area_btn.area3{
+    top: 56%;
+    right: 27.5%;
+    width: 13%;
+}
+.japan_map .area_btn.area4{
+    top: 65%;
+    right: 44%;
+    width: 13%;
+}
+.japan_map .area_btn.area5{
+    top: 52%;
+    left: 20%;
+    width: 25%;
+}
+.japan_map .area_btn.area6{
+    top: 70%;
+    left: 0;
+    width: 25%;
+}
+/* オーバーレイ */
+.japan_map .area_overlay{
+    display: none;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    background-color: #111;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+/* 選択前は表示を隠す */
+.japan_map .pref_area{
+    display: none;
+}
+
+/* 地域毎の都道府県リスト */
+.japan_map .pref_list{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    z-index: 3;
+    box-sizing: border-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 90%;
+    background-color: #FFF;
+}
+.japan_map .pref_list > div{
+    box-sizing: border-box;
+    width: 50%;
+    border: 1px solid #CCC;
+    font-weight: bold;
+    text-align: center;
+    padding: 0.5em;
+    cursor: pointer;
+}
+@media screen and (max-width: 480px){
+    /* スマホユーザー向けにボタン文字サイズを調整 */
+    .japan_map .area_btn{
+        font-size: 4vw;
+    }
+}
+.sea{
+    z-index: 1;
+    width: 98vw;
+    height: 96vh;
+    position: relative;
+    top: 10vh;
+    bottom: 20vh!important;
+    left: 3px;
+
+}
+.sun{
+    z-index: 0;
+    width: 98vw;
+    height: 145vh;
+    position: relative;
+    top: 10vh;
+    bottom: 500vh!important;
+    opacity: 0;
+   
+}
+body{
+    position: relative;
+}
+header{
+    position: absolute;
+    z-index: 10;
+    
+}
+.image-man{
+    position: relative;
+    bottom: 30vh;
+}
+.flower{
+    position: relative;
+    z-index: 10;
+    width:100vw; /*要素の幅指定*/
+    height:100vh; /*要素の高さ指定*/
+    background-image:url(flower.png); /*背景画像を指定*/
+    background-repeat:no-repeat; /*背景画像を繰り返さないよう指定*/
+    background-size:auto; /*背景画像のサイズ指定*/
+}
+.map{
+width: 100vw;
+height: 100vh;
+}
+.tweets-container{   
+    margin: 0 auto;
+    max-width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.tweet{
+margin: 30px;
+} 
