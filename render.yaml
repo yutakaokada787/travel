@@ -1,0 +1,21 @@
+databases:
+  - name: travel_DB
+    databaseName: travel_db_nc0j
+    user: travel
+    region: singapore
+
+services:
+  - type: web
+    name: travel
+    env: ruby
+    region: singapore
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: travel_DB
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
